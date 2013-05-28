@@ -17,9 +17,13 @@ Requirements
 =============
 - psutil (https://pypi.python.org/pypi/psutil)
 
+Screenshots
+=============
+![Screenshot](https://raw.github.com/hakanzy/django-sysmon/master/docs/screen.jpg)
+
 
 Installation
 =============
 
- - Pu django-sysmon in your django applications directory and add django-sysmon into your INSTALLED_APPS
+ - Pu sysmon folder in your django applications folder, and add sysmon into your INSTALLED_APPS
  - That's all.
