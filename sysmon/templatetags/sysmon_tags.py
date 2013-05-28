@@ -1,5 +1,8 @@
 from collections import namedtuple
+
 from django import template
+
+from psutil import AccessDenied
 
 
 cpuTuple = namedtuple('cpuTuple',
@@ -77,12 +80,20 @@ class SysMon(template.Node):
         # processes
         processes = list()
         for process in pu.get_process_list():
+
+            try:
+                percent = process.get_memory_percent()
+            except AccessDenied:
+                percent = "Access Denied"
+            else:
+                percent = int(percent)
+
             processes.append(processTuple(
                 pid=process.pid,
                 name=process.name,
                 status=process.status,
                 user=process.username,
-                memory=int(process.get_memory_percent())))
+                memory=percent))
 
         processes_sorted = sorted(
             processes, key=lambda p: p.memory, reverse=True)
