@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 
 setup(
-    name='django-sysmon',
+    name='django-system-monitor',
     version='0.1',
     author='Hakan OZAY',
     author_email='hakanzy@gmail.com',
@@ -10,6 +10,9 @@ setup(
     description='View simple system statistics in django admin panel',
     long_description=os.path.join(os.path.dirname(__file__), 'REAMDE.md'),
     packages=find_packages(exclude=[]),
+    install_requires=[
+        'psutil==0.7.1',
+    ],
     include_package_data=True,
     classifiers=[
         'Development Status :: 4 - Beta',
