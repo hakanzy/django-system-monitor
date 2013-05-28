@@ -1,0 +1,137 @@
+{% extends "admin/index.html" %}
+{% load sysmon_tags %}
+{% block content %}
+{% get_system_stats %}
+<style>
+    .graph { 
+        background-color: #B1D632;
+        position: relative;
+        width: 98%; 
+        border: 1px solid #666;
+        padding: 1px;
+    }
+    .graph .bar { 
+        display: block;
+        padding: 1px;
+        position: relative;
+        background: #ff0002;
+        text-align: center; 
+        color: #ffffff;
+        height: 1em; 
+        line-height: 1em;
+    }
+    .graph .bar span { position: absolute; left: 1em; }
+</style>
+
+{% if user.is_superuser %}
+<div class="module">
+    {% if error_psutil %}
+        <table width="100%">
+            <caption>! ERROR (psutil not found)</caption>    
+        
+            <tbody>
+                <th>
+                    - Please install psutil for view system statistics on this page
+                    <br /><br />
+                    $ pip install psutil
+                </th>
+            </tbody>
+        </table>
+    {% else %}
+    <table width="100%">
+        <caption>
+            :::: SIMPLE SYSTEM USAGE STATISTICS
+            <a href="#" onclick="
+                var tbody_element = document.getElementById('body-sysmon');
+                if(tbody_element.style.display == 'none') {
+                    tbody_element.style.display = '';
+                } else {
+                    tbody_element.style.display = 'none';
+                }
+                return false;">
+                [ show/hide ]
+            </a>
+        </caption>
+        <tbody id="body-sysmon">
+            <!-- CPU -->
+            <tr>
+                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: CPU USAGE</th>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="graph">
+                        <strong class="bar" style="width: {{cpu_info.used}}%;">{{cpu_info.used}}% [Core(s): {{cpu_info.core}}]</strong>
+                    </div>
+                </td>
+            </tr>
+            <!-- RAM -->
+            <tr>
+                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: MEMORY USAGE</th>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div class="graph">
+                        <strong class="bar" style="width: {{mem_info.used}}%;">{{mem_info.used}}% [Total: {{mem_info.total}}]</strong>
+                    </div>
+                </td>
+            </tr>
+            <!-- DISK -->
+            <tr>
+                <th colspan="5">:: DISK PARTITIONS</th>
+            </tr>
+            {% for part in partitions %}
+            <tr>
+                <td colspan="5">
+                <div class="graph">
+                    <strong class="bar" style="width: {{part.percent}}%;">{{part.percent}}% [{{part.mountpoint}}, ({{part.total}})]</strong>
+                </div>
+                </td>
+            </tr>
+            {% endfor %}
+            <!-- NETWORK -->
+            <tr>
+                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: NETWORK USAGE</th>
+            </tr>
+            <tr>
+                <th>Device</th>
+                <th>Recv</th>
+                <th>Sent</th>
+                <th>Pkg Sent</th>
+                <th>Pkg Recv</th>
+            </tr>
+            {% for network in networks %}
+            <tr>
+                <td>{{network.device}}</td>
+                <td>{{network.recv}}</td>
+                <td>{{network.sent}}</td>
+                <td>{{network.pkg_sent}}</td>
+                <td>{{network.pkg_recv}}</td>
+            </tr>
+            {% endfor %}
+            <!-- PROCESSES -->
+            <tr>
+                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: RUNNING PROCESSES (TOP 10 memory used)</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>PID</th>
+                <th>Mem%</th>
+                <th>Status</th>
+                <th>User</th>
+            </tr>
+            {% for process in processes %}
+            <tr>
+                <td>{{process.name}}</td>
+                <td>{{process.pid}}</td>
+                <td>{{process.memory}}%</td>
+                <td>{{process.status}}</td>
+                <td>{{process.user}}</td>
+            </tr> 
+            {% endfor %}
+        </tbody>
+        </table>
+</div>
+{% endif %}
+{% endif %}
+{{ block.super }}
+{% endblock %}
