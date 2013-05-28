@@ -11,4 +11,13 @@ setup(
     long_description=open('README.md').read(),
     packages=find_packages(exclude=[]),
     include_package_data=True,
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Web Environment',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: BSD License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Framework :: Django',
+    ],
 )
