@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-sysmon',
-    version='0.1',
+    version='0.2',
     author='Hakan OZAY',
     author_email='hakanzy@gmail.com',
     url='https://github.com/hakanzy/django-sysmon',
