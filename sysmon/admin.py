@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-admin.site.index_template = 'index.html'
+admin.site.index_template = 'sysmon/index.html'
