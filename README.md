@@ -21,5 +21,5 @@ Requirements
 Installation
 =============
 
- - Pu django-sysmon in your django applications directory and add django-sysmon into your INSTALLED_APPS
+ - Pu sysmon folder in your django applications folder, and add sysmon into your INSTALLED_APPS
  - That's all.
