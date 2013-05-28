@@ -19,7 +19,7 @@ Requirements
 
 Screenshots
 =============
-![Screenshot](https://raw.github.com/hakanzy/django-sysmon/master/docs/screen.jpg)
+![Screenshot](https://raw.github.com/hakanzy/django-sysmon/master/docs/screen.png)
 
 
 Installation
