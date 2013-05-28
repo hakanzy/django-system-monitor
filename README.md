@@ -26,5 +26,5 @@ Screenshots
 Installation
 =============
 
- - Pu sysmon folder in your django applications folder, and add sysmon into your INSTALLED_APPS
+ - Put sysmon folder in your django applications folder, and add sysmon into your INSTALLED_APPS
  - That's all.
