@@ -23,7 +23,7 @@ Screenshots
 ![Screenshot](https://raw.github.com/hakanzy/django-sysmon/master/docs/screen.png)
 
 
-Installation
+Installation/Usage
 =============
 
- - After install, add 'sysmon' to your INSTALLED_APPS, that's all.
+ - After setup, add 'sysmon' to your INSTALLED_APPS, that's all.
