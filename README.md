@@ -17,6 +17,10 @@ Requirements
 =============
 - psutil (https://pypi.python.org/pypi/psutil)
 
+Screenshots
+=============
+![Screenshot](https://raw.github.com/hakanzy/django-sysmon/master/docs/screen.jpg)
+
 
 Installation
 =============
