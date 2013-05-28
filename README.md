@@ -12,6 +12,7 @@ Features
 - Network Usage
 - TOP 10 memory used processes
 - Viewing only superuser
+- It currently supports Linux, Windows, OSX and FreeBSD (psutil supported)
 
 Requirements
 =============
