@@ -21,6 +21,7 @@
         line-height: 1em;
     }
     .graph .bar span { position: absolute; left: 1em; }
+    .module table td.proces { white-space: normal; }
 </style>
 
 {% if user.is_superuser %}
@@ -121,7 +122,7 @@
             </tr>
             {% for process in processes %}
             <tr>
-                <td>{{process.name}}</td>
+                <td class="process">{{process.name}}</td>
                 <td>{{process.pid}}</td>
                 <td>{{process.memory}}%</td>
                 <td>{{process.status}}</td>
