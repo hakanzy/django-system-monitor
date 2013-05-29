@@ -7,7 +7,7 @@ def kbyte(quantity):
   return 1024. * quantity
 
 def mega(quantity):
-  return (1024. * 1024.) * quantity
+  return kbyte(1024.) * quantity
 
 def giga(quantity):
   return mega(1024) * quantity
