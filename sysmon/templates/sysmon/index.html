@@ -3,21 +3,21 @@
 {% block content %}
 {% get_system_stats %}
 <style>
-    .graph { 
+    .graph {
         background-color: #B1D632;
         position: relative;
-        width: 98%; 
+        width: 98%;
         border: 1px solid #666;
         padding: 1px;
     }
-    .graph .bar { 
+    .graph .bar {
         display: block;
         padding: 1px;
         position: relative;
         background: #ff0002;
-        text-align: center; 
+        text-align: center;
         color: #ffffff;
-        height: 1em; 
+        height: 1em;
         line-height: 1em;
     }
     .graph .bar span { position: absolute; left: 1em; }
@@ -28,8 +28,8 @@
 <div class="module">
     {% if error_psutil %}
         <table width="100%">
-            <caption>! ERROR (psutil not found)</caption>    
-        
+            <caption>! ERROR (psutil not found)</caption>
+
             <tbody>
                 <th>
                     - Please install psutil for view system statistics on this page
@@ -127,7 +127,7 @@
                 <td>{{process.memory}}%</td>
                 <td>{{process.status}}</td>
                 <td>{{process.user}}</td>
-            </tr> 
+            </tr>
             {% endfor %}
         </tbody>
         </table>
