@@ -4,24 +4,28 @@
 {% get_system_stats %}
 <style>
     .graph {
-        background-color: #B1D632;
+        background-color: #fff;
         position: relative;
         width: 98%;
-        border: 1px solid #666;
+        border: 1px solid #999;
         padding: 1px;
     }
     .graph .bar {
         display: block;
-        padding: 1px;
+        padding: 2px;
         position: relative;
-        background: #ff0002;
-        text-align: center;
-        color: #ffffff;
+        background: #ececec;
+        color: #444;
         height: 1em;
-        line-height: 1em;
+        line-height: 1.1em;
+        border: 1px solid #ccc;
     }
     .graph .bar span { position: absolute; left: 1em; }
     .module table td.process { white-space: normal; }
+    
+    .cth {
+        padding: 2px; background-color: #eee;
+    }
 </style>
 
 {% if user.is_superuser %}
@@ -41,7 +45,7 @@
     {% else %}
     <table width="100%">
         <caption>
-            :::: SIMPLE SYSTEM USAGE STATISTICS
+            System Statistics
             <a href="#" onclick="
                 var tbody_element = document.getElementById('body-sysmon');
                 if(tbody_element.style.display == 'none') {
@@ -50,48 +54,48 @@
                     tbody_element.style.display = 'none';
                 }
                 return false;">
-                [ show/hide ]
+                (Toggle)
             </a>
         </caption>
         <tbody id="body-sysmon" style="display: none">
             <!-- CPU -->
             <tr>
-                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: CPU USAGE</th>
+                <th colspan="5" class="cth">CPU</th>
             </tr>
             <tr>
                 <td colspan="5">
                     <div class="graph">
-                        <strong class="bar" style="width: {{cpu_info.used}}%;">{{cpu_info.used}}% [Core(s): {{cpu_info.core}}]</strong>
+                        <strong class="bar" style="width: {{cpu_info.used}}%;">{{cpu_info.used}}% | Core(s): {{cpu_info.core}}</strong>
                     </div>
                 </td>
             </tr>
             <!-- RAM -->
             <tr>
-                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: MEMORY USAGE</th>
+                <th colspan="5" class="cth">Memory usage</th>
             </tr>
             <tr>
                 <td colspan="5">
                     <div class="graph">
-                        <strong class="bar" style="width: {{mem_info.used}}%;">{{mem_info.used}}% [Total: {{mem_info.total}}]</strong>
+                        <strong class="bar" style="width: {{mem_info.used}}%;">{{mem_info.used}}% | Total: {{mem_info.total}}</strong>
                     </div>
                 </td>
             </tr>
             <!-- DISK -->
             <tr>
-                <th colspan="5">:: DISK PARTITIONS</th>
+                <th class="cth" colspan="5">Disks</th>
             </tr>
             {% for part in partitions %}
             <tr>
                 <td colspan="5">
                 <div class="graph">
-                    <strong class="bar" style="width: {{part.percent}}%;">{{part.percent}}% [{{part.mountpoint}}, ({{part.total}})]</strong>
+                    <strong class="bar" style="width: {{part.percent}}%;">{{part.percent}}% | {{part.mountpoint}} | ({{part.total}})</strong>
                 </div>
                 </td>
             </tr>
             {% endfor %}
             <!-- NETWORK -->
             <tr>
-                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: NETWORK USAGE</th>
+                <th colspan="5" class="cth">Networking</th>
             </tr>
             <tr>
                 <th>Device</th>
@@ -111,12 +115,12 @@
             {% endfor %}
             <!-- PROCESSES -->
             <tr>
-                <th colspan="5" style="padding: 2px; background-color: #bdd9dd;">:: RUNNING PROCESSES (TOP 10 memory used)</th>
+                <th colspan="5" class="cth">Processes by memory usage</th>
             </tr>
             <tr>
                 <th>Name</th>
                 <th>PID</th>
-                <th>Mem%</th>
+                <th>Mem</th>
                 <th>Status</th>
                 <th>User</th>
             </tr>
