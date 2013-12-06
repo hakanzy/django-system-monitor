@@ -79,7 +79,7 @@ class SysMon(template.Node):
 
         # processes
         processes = list()
-        for process in pu.get_process_list():
+        for process in pu.process_iter():
 
             try:
                 percent = process.get_memory_percent()
