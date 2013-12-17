@@ -1,0 +1,6 @@
+-r base.txt
+django
+pytest==2.3.4
+pytest-cov==1.6
+pytest-flakes==0.1
+pytest-pep8==1.0.4

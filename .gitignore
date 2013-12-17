@@ -1,2 +1,6 @@
 *.pyc
-demo.sqlite
+.cache
+.coverage
+django_system_monitor.egg-info
+htmlcov
+venv
