@@ -64,7 +64,7 @@ class SysMon(template.Node):
 
         # network
         networks = list()
-        for k, v in pu.network_io_counters(pernic=True).items():
+        for k, v in pu.net_io_counters(pernic=True).items():
             # Skip loopback interface
             if k == 'lo':
                 continue
