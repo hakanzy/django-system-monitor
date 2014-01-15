@@ -5,3 +5,4 @@ django_system_monitor.egg-info
 htmlcov
 venv
 dist
+*.sqlite3
