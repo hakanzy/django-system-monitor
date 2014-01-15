@@ -26,4 +26,6 @@ Screenshots
 Installation/Usage
 =============
 
+ - pip install django-system-monitor
+
  - After setup, add 'sysmon' to your INSTALLED_APPS, that's all.
