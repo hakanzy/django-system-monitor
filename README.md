@@ -41,8 +41,13 @@ Contributors
 =========================
 
 Rafael Carício, https://github.com/rafaelcaricio
+
 Peter Heise, https://github.com/degenhard
+
 Cihan Okyay, https://github.com/cihann
+
 Fatih Erikli, https://github.com/fatiherikli
+
 John Sykora, https://github.com/jsykora
+
 Tuna VARGI, https://github.com/vargi
