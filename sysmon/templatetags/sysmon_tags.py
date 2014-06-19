@@ -1,4 +1,5 @@
 from collections import namedtuple
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 from django import template
 
@@ -32,6 +33,15 @@ def bytes2human(num):
 register = template.Library()
 
 
+def tofloat(value):
+    try:
+        return float(value)
+    except ValueError:
+        return 0
+
+register.filter(name='tofloat', filter_func=tofloat)
+
+
 class SysMon(template.Node):
     def render(self, context):
         try:
@@ -43,12 +53,12 @@ class SysMon(template.Node):
         # cpu
         cpu_info = cpuTuple(
             core=pu.NUM_CPUS,
-            used=pu.cpu_percent())
+            used=intcomma(pu.cpu_percent(), use_l10n=False))
 
         # memory
         mem_info = memTuple(
             total=bytes2human(pu.TOTAL_PHYMEM),
-            used=pu.virtual_memory().percent)
+            used=intcomma(pu.virtual_memory().percent, use_l10n=False))
 
         # disk
         partitions = list()
@@ -60,7 +70,10 @@ class SysMon(template.Node):
                     fstype=part.fstype,
                     total=bytes2human(
                         pu.disk_usage(part.mountpoint).total),
-                    percent=pu.disk_usage(part.mountpoint).percent))
+                    percent=intcomma(pu.disk_usage(part.mountpoint).percent,
+                                     use_l10n=False)
+                )
+            )
 
         # network
         networks = list()
