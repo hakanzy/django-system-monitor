@@ -11,6 +11,7 @@ def test_cpu_info_in_context():
 
 
 def test_cpu_info_in_context_with_fr_language_code(settings):
+    settings.LANGUAGE_CODE = 'fr-FR'
     context = {}
     SysMon().render(context)
     assert context.get('cpu_info', None)
