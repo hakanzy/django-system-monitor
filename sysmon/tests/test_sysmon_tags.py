@@ -10,6 +10,15 @@ def test_cpu_info_in_context():
     assert hasattr(cpu_info, 'used')
 
 
+def test_cpu_info_in_context_with_fr_language_code(settings):
+    settings.LANGUAGE_CODE = 'fr-FR'
+    context = {}
+    SysMon().render(context)
+    assert context.get('cpu_info', None)
+    cpu_info = context['cpu_info']
+    assert ',' not in str(cpu_info.used)
+
+
 def test_mem_info_in_context():
     context = {}
     SysMon().render(context)
@@ -17,6 +26,16 @@ def test_mem_info_in_context():
     mem_info = context['mem_info']
     assert hasattr(mem_info, 'total')
     assert hasattr(mem_info, 'used')
+
+
+def test_mem_info_in_context_with_fr_language_code(settings):
+    settings.LANGUAGE_CODE = 'fr-FR'
+    context = {}
+    SysMon().render(context)
+    assert context.get('mem_info', None)
+    mem_info = context['mem_info']
+    assert ',' not in str(mem_info.total)
+    assert ',' not in str(mem_info.used)
 
 
 def test_disk_partitions_in_context():
@@ -31,6 +50,18 @@ def test_disk_partitions_in_context():
     assert hasattr(first_partition, 'fstype')
     assert hasattr(first_partition, 'total')
     assert hasattr(first_partition, 'percent')
+
+
+def test_disk_partitions_in_context_with_fr_language_code(settings):
+    settings.LANGUAGE_CODE = 'fr-FR'
+    context = {}
+    SysMon().render(context)
+    assert context.get('partitions', None)
+    partitions = context['partitions']
+    assert type(partitions) == list
+    first_partition = partitions[0]
+    assert ',' not in str(first_partition.total)
+    assert ',' not in str(first_partition.percent)
 
 
 def test_networks_in_context():
