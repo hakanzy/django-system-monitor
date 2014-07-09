@@ -40,8 +40,6 @@ Hakan OZAY, https://github.com/hakanzy/
 Contributors
 =========================
 
-Peter Heise, https://github.com/degenhard
-
 Rafael Carício, https://github.com/rafaelcaricio
 
 Peter Heise, https://github.com/degenhard
