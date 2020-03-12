@@ -11,7 +11,7 @@ setup(
     long_description=os.path.join(os.path.dirname(__file__), 'README.md'),
     packages=find_packages(exclude=[]),
     install_requires=[
-        'psutil==1.2.1',
+        'psutil==5.6.6',
     ],
     include_package_data=True,
     classifiers=[
